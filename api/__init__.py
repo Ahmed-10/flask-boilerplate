@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from werkzeug.exceptions import HTTPException
+import api.routes as bp
 
 
 def create_app(config_class):
@@ -17,6 +18,7 @@ def create_app(config_class):
         }), error.code
 
     app.add_url_rule('/', 'index', index)
+    app.register_blueprint(bp.api)
     app.register_error_handler(HTTPException, http_error_handler)
 
     return app
