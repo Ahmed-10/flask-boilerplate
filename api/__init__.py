@@ -1,11 +1,13 @@
 from flask import Flask, jsonify
 from werkzeug.exceptions import HTTPException
+from api.models import db
 import api.routes as bp
 
 
 def create_app(config_class):
     app = Flask(__name__)
     app.config.from_object(config_class)
+    db.init_app(app)
 
     def index():
         return 'Hello, World!'
