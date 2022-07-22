@@ -27,7 +27,7 @@ class Service:
         return record.format()
 
     def add_one(self, new_record):
-        record = self.model(new_record)
+        record = self.model(**new_record)
         try:
             record.insert()
         except IntegrityError as error:
